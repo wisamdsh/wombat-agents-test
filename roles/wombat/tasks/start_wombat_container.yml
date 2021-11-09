@@ -16,6 +16,6 @@
       WOMBAT_NODENAME: "{{wombat_node_name}}"
       WOMBAT_LICENSE: "{{wombat_license}}"
     mounts:
-      - source: /Users/wisamdsh/wombat-agents-test/scripts
+      - source: ../../../scripts
         target: /wombat/ansible/scripts
         type: bind

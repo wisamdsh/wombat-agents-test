@@ -1,7 +1,7 @@
-wombat_docker_image: erlangsolutions/wombatoam:3.8.6
+wombat_docker_image: erlangsolutions/wombatoam:latest
 wombat_hostname: wombat
 wombat_container_name: ans-wombat
 wombat_node_name: 'wombat@wombat'
 wombat_license: 
 default_username: admin
-default_password: wisamdsh
+default_password: adminadmin

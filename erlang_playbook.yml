@@ -32,8 +32,8 @@
 
     - name: Generate Erlang report
       template:
-        src: /Users/wisamdsh/wombat-agents-test/report_template.j2
-        dest: /Users/wisamdsh/ans-reports/erlang.html
+        src: report_template.j2
+        dest: reports_html/erlang.html
       vars:
         inventories: 'erlang_inv'
 ...

@@ -24,8 +24,8 @@
   tasks:
     - name: Generate Elixir report
       template:
-        src: /Users/wisamdsh/wombat-agents-test/report_template.j2
-        dest: /Users/wisamdsh/ans-reports/elixir.html
+        src: report_template.j2
+        dest: reports_html/elixir.html
       vars:
         inventories: 'elixir_inv'
 
