@@ -1,0 +1,7 @@
+  - name: build custom images if exist
+    include: roles/docker/tasks/build_custom_image.yml
+    vars:
+      custom_docker_image: '{{custom_elixir_docker_image}}{{item}}'
+      dockerfile: 'Dockerfile.elixir'
+      base_docker_version: '{{elixir_docker_image}}{{item}}'
+    with_items: "{{elixir_customized_versions}}"     

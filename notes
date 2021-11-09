@@ -1,0 +1,10 @@
+
+==============================
+- ensuring nodes are added to wombat 
+- ensuring the perftest node connected to rmq and working
+- clean custom docker images
+- clean the network
+- add custom erlang version for erlang 17
+- preparing wombat immediately after starting the container doesn't change the password ..it seems it needs more time till wombat starts
+
+

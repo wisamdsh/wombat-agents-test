@@ -1,0 +1,25 @@
+[local]
+localhost ansible_connection=local
+
+[wombat_inv]
+ans-wombat 
+
+[erlang_inv]
+ans-erlang[17:24] 
+
+[elixir_inv]
+ans-elixir1.[2:12]
+
+[rmq_inv]
+ans-rmq3.[4:9]
+
+[containers:children]
+wombat_inv 
+erlang_inv
+elixir_inv
+rmq_inv
+
+[containers:vars]
+ansible_connection=docker
+ansible_python_interpreter=/usr/bin/python3
+

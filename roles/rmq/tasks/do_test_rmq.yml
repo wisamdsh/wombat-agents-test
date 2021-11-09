@@ -1,0 +1,116 @@
+
+- name: clean containers
+  import_role:
+    name: docker
+    tasks_from: tasks/clean_containers.yml
+
+- name: start wombat
+  import_role: 
+    name: wombat
+    tasks_from: tasks/start_wombat_container.yml
+
+- name: run rmq node
+  import_role:
+    name: rmq
+    tasks_from: tasks/start_rmq.yml
+
+- name: check if RabbitMQ has started
+  import_role: 
+    name: rmq 
+    tasks_from: tasks/ensure_rmq_running.yml
+  delegate_to: "{{version}}"
+
+- name: set admin user 
+  import_role: 
+    name: rmq
+    tasks_from: tasks/set_user.yml
+  delegate_to: "{{version}}"
+
+- name: start perftest
+  import_role:
+    name: rmq
+    tasks_from: tasks/run_perftest.yml
+
+- name: prepare_wombat
+  import_role:
+    name: wombat
+    tasks_from: tasks/prepare_wombat.yml
+  delegate_to: ans-wombat
+
+- name: get running nodes' names to add to wombat
+  import_role:
+    name: docker 
+    tasks_from: tasks/get_nodes_names.yml
+  vars:
+    product: "rmq"
+  
+
+- name: add nodes to wombat
+  import_role:
+    name: wombat
+    tasks_from: tasks/add_nodes.yml
+  delegate_to: ans-wombat
+
+- name: check the agents
+  import_role:
+    name: check_agents
+  delegate_to: "{{version}}"
+
+- name: check the metrics
+  import_role:
+    name: check_metrics
+  delegate_to: "{{version}}"
+
+- name: collect results
+  set_fact: 
+    scripts_results: "{{ scripts_results | default({}) | combine ({ version : [agents_script_result.stdout, metrics_script_result.stdout]}) }}"
+      # '{{ {version: [agents_script_result.stdout, metrics_script_result.stdout]} }}'
+- name: sdfsdfsdfdsf
+  debug: 
+    var: scripts_results
+
+
+
+# vm_cidr: '10.10.0.0/24'
+# vm_network: FOO
+# vm_gateway: '10.10.0.1'
+# networks:
+#      "{{vm_cidr}}":
+#        network: "{{vm_network}}"
+#        gateway: "{{vm_gateway}}
+
+# networks: '{{ {vm_cidr:{"network":vm_network,"gateway":vm_gateway} } }}'
+  
+
+# - name: refresh facts
+#   setup:
+#   delegate_to: ans-rmq{{version}}
+#   delegate_facts: yes
+
+# - name: refresh facts on localhost
+#   setup:
+
+# - name: debug 1
+#   # vars: 
+#   #   host: ans-rmq{{version}}
+#   debug:
+#     msg: "{{hostvars['ans-rmq3.4'][metrics_script_result][stdout]}}"
+
+
+# - name: fetch agents and metrics scripts results
+#   vars: 
+#     host: "ans-rmq{{version}}"
+#   set_fact:
+#     scripts_result: {host: "{{hostvars[host][metrics_script_result][stdout]}}"}
+
+
+
+# - name: debug rmq result 
+#   debug:
+#     var: rabbitmq_result
+    
+
+
+# [hostvars[ans-rmq{{version}}][agents_script_result][stdout], hostvars[ans-rmq{{version}}][metrics_script_result][stdout]]
+
+

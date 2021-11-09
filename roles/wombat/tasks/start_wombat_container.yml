@@ -1,0 +1,21 @@
+- name: Pull Wombat image
+  docker_image:
+    name: "{{ wombat_docker_image }}"
+    source: pull
+
+- name: run Wombat container
+  docker_container:
+    network_mode: "{{network}}"
+    hostname: "{{wombat_hostname}}"
+    name: "{{wombat_container_name}}"
+    image: "{{wombat_docker_image}}"
+    ports:
+      - 8080:8080
+    container_default_behavior: no_defaults
+    env:
+      WOMBAT_NODENAME: "{{wombat_node_name}}"
+      WOMBAT_LICENSE: "{{wombat_license}}"
+    mounts:
+      - source: /Users/wisamdsh/wombat-agents-test/scripts
+        target: /wombat/ansible/scripts
+        type: bind

@@ -1,0 +1,14 @@
+
+rmq_docker_image: "rabbitmq:"
+custom_rmq_docker_image: "ans_rabbitmq:"
+rmq_container_name: ans-rmq
+
+perftest_docker_image: pivotalrabbitmq/perf-test:latest
+
+
+# users:
+rabbitmq_users:
+  - username: admin 
+    password: admin
+    tags: administrator
+    permissions: ".* .* .*"

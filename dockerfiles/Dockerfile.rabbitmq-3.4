@@ -1,0 +1,21 @@
+ARG version
+
+FROM $version
+
+SHELL ["/bin/bash", "-c"]
+ARG version
+
+RUN  > /etc/apt/sources.list && \
+     echo "deb http://archive.debian.org/debian wheezy main" >> /etc/apt/sources.list && \
+     apt-get --force-yes -y --ignore-missing update || true && \
+     apt-get -y install make && \
+     apt-get -y install ca-certificates && \
+     apt-get -y install libssl-dev openssl && \
+     apt-get -y install wget && \
+     wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz && \
+     tar xzvf Python-3.5.0.tgz && \
+     cd Python-3.5.0 && \
+     ./configure && \
+     make && \
+     make install && \
+     ln -s /usr/local/bin/python3.5 /usr/bin/python3

@@ -1,0 +1,16 @@
+
+- name: check if {{custom_docker_image}} exist
+  docker_image_info:
+    name: '{{custom_docker_image}}'
+  register: result
+
+- name: build {{custom_docker_image}} docker image
+  docker_image:
+    name: "{{custom_docker_image}}"
+    build:
+      path: ./dockerfiles/
+      dockerfile: '{{dockerfile}}'
+      args: 
+        version: '{{base_docker_version}}'
+    source: build
+  when: result.images | length == 0

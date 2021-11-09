@@ -1,0 +1,17 @@
+ARG version
+
+FROM $version
+
+SHELL ["/bin/bash", "-c"]
+ARG version
+
+RUN apt-get -y update && \
+    apt-get -y install libssl-dev openssl && \
+    apt-get -y install wget && \
+    wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz && \
+    tar xzvf Python-3.5.0.tgz && \
+    cd Python-3.5.0 && \
+    ./configure && \
+    make && \
+    make install && \
+    ln -s /usr/local/bin/python3.5 /usr/bin/python3

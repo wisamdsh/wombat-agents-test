@@ -1,0 +1,19 @@
+ARG version
+
+FROM $version
+
+SHELL ["/bin/bash", "-c"]
+ARG version
+
+RUN > /etc/apt/sources.list.d/rabbitmq.list || true && \
+    apt-get -y update && \
+    apt-get -y install build-essential && \
+    apt-get -y install libssl-dev openssl && \
+    apt-get -y install wget && \
+    wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz && \
+    tar xzvf Python-3.5.0.tgz && \
+    cd Python-3.5.0 && \
+    ./configure && \
+    make && \
+    make install && \
+    ln -s /usr/local/bin/python3.5 /usr/bin/python3

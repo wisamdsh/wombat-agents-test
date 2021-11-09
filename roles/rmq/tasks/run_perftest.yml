@@ -1,0 +1,9 @@
+---
+  - name: run perftest using docker
+    docker_container:
+      network_mode: "{{network}}"
+      name: ans-perftest
+      image: "{{perftest_docker_image}}"
+      container_default_behavior: no_defaults
+      command: "-x {{publishers}} -y {{consumers}} -Y {{consumer_channel_count}} -u {{queue_name}} -ct {{confirm_timeout}} -p -f {{flag}} -q {{qos}} --size {{msg_size}} -c {{confirm}} -ad {{auto_delete}} --uri {{connection_uri}}"
+    

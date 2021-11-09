@@ -1,0 +1,21 @@
+
+
+- name: Get running containers
+  docker_host_info:
+    containers: yes
+  register: docker_info
+ 
+  
+
+- name: remove containers 
+  docker_container:
+    name: "{{container.Id}}"
+    keep_volumes: false
+    state: absent
+    container_default_behavior: no_defaults
+  with_items: "{{docker_info.containers}}"
+  when: container.Names | regex_search("ans-*")
+  loop_control:
+    loop_var: container
+ 
+  

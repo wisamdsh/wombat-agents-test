@@ -1,0 +1,18 @@
+
+- name: fetch the node name
+  set_fact:
+    node_name: "{{node.value}}"
+  with_dict: "{{ nodes_names }}"
+  when: node.key == ansible_host
+  loop_control:
+    loop_var: node
+
+- name: run agents script
+  command: sh -c "/wombat/ansible/scripts/check_agents.escript '{{node_name}}'"
+  register: agents_script_result
+    
+
+- name: check agent script result
+  fail:
+    msg: ["the following nodes failed the agents test:", "{{agents_script_result.stdout}}"]
+  when: agents_script_result.stdout != "[]"

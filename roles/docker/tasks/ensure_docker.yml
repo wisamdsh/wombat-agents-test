@@ -1,0 +1,12 @@
+- name: ensure docker installed
+  package:
+    name: docker
+    state: present
+
+- name: Create a network
+  docker_network:
+    name: "{{network_name}}"
+
+- name: set fact docker network
+  set_fact:
+    network: "{{network_name}}"

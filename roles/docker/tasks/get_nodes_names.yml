@@ -1,0 +1,25 @@
+- name: Get running containers
+  docker_host_info:
+    containers: yes
+  register: docker_info
+
+
+# it is important to know here that the registered variaable is going to 
+# accumelate the values and not overriding it because registered variable is a host-level and when used 
+# in a loop it will contain a value for each item in the loop.
+- name: get nodes' name
+  community.docker.docker_container_exec:
+    container: "{{container.Id}}"
+    command: sh -c "{ epmd -names | grep name | awk '{print $2}'; cat /etc/hostname | tr -d '\n'; } | tr '\n' '@'"
+  register: output
+  with_items: "{{docker_info.containers}}"
+  when: container.Names | regex_search("{{product}}")
+  loop_control:
+    loop_var: container
+
+- name: set fact
+  set_fact:
+    nodes_names: "{{ output.results | reject('skipped') | selectattrs('stdout') }}"
+    cacheable: yes
+
+

@@ -1,0 +1,31 @@
+---     
+- hosts: local
+  vars_files:
+    - external-vars.yaml
+  roles:
+    - {role: docker, action: "ensure_docker"}
+    - {role: docker, action: "clean_containers"}   
+    - {role: elixir, action: "build_custom_images"}
+    - {role: wombat, action: "start_wombat_container"}
+    - {role: elixir, action: "start_nodes"}
+    - {role: wombat, action: "prepare_wombat", delegate_to: ans-wombat}
+    - {role: docker, action: "get_nodes_names", product: "elixir"}  
+    - {role: wombat, action: "add_nodes", delegate_to: ans-wombat}
+
+
+- hosts: elixir_inv
+  vars: 
+    nodes_names: "{{ hostvars['localhost']['ansible_facts']['nodes_names'] }}"
+  roles:
+    - {role: check_agents}
+    - {role: check_metrics}
+
+- hosts: local
+  tasks:
+    - name: Generate Elixir report
+      template:
+        src: /Users/wisamdsh/wombat-agents-test/report_template.j2
+        dest: /Users/wisamdsh/ans-reports/elixir.html
+      vars:
+        inventories: 'elixir_inv'
+

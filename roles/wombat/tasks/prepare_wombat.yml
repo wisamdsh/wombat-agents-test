@@ -1,0 +1,4 @@
+
+- name: change wombat password and give permissions to wombat-headless.py
+  command: sh -c "chmod +x wombat-headless.py && ./wombat-headless.py change_password --password "{{default_password}}""
+       

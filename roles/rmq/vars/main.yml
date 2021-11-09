@@ -1,0 +1,14 @@
+
+# perftest
+
+publishers: 1
+consumers: 2
+consumer_channel_count: 1
+queue_name: test-q
+confirm_timeout: 90
+flag: persistent
+qos: 10
+msg_size: 2000
+confirm: 1000 
+auto_delete: false
+connection_uri: amqp://guest:guest@rmq:5672

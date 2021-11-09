@@ -1,0 +1,7 @@
+  - name: build custom images if exist
+    include: roles/docker/tasks/build_custom_image.yml
+    vars:
+      custom_docker_image: '{{custom_erlang_docker_image}}{{item}}'
+      dockerfile: 'Dockerfile.erlang-{{item}}'
+      base_docker_version: '{{erlang_docker_image}}{{item}}'
+    with_items: "{{erlang_customized_versions}}"     

@@ -1,0 +1,4 @@
+
+elixir_docker_image: "elixir:"
+custom_elixir_docker_image: "ans_elixir:"
+elixir_container_name: ans-elixir

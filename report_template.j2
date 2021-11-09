@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+
+<h1>Testing Erlang Nodes:</h1>
+
+<h3> Agents </h3>
+
+
+<h3> Metrics </h3>
+<body>
+<table>
+    <tbody>  
+        {% for item in groups[inventories] %}
+            <tr>
+                <th> {{item}} </th>
+                <th> {{hostvars[item]['metrics_script_result']['stdout']}} </th>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+
+
+- name: install curl
+  command: sh -c "apt-get update || true && apt-get -y install curl"
+
+- name: Ensure rabbitmq is started 
+  command: sh -c "curl -i -u guest:guest http://localhost:15672/api/vhosts"
+  retries: 10
+  delay: 3
+  register: curl_result
+  until: curl_result.rc == 0

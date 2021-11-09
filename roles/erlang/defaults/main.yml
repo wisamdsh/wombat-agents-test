@@ -1,0 +1,5 @@
+
+
+custom_erlang_docker_image: "ans_i386/erlang:"
+erlang_container_name: ans-erlang
+erlang_docker_image: "i386/erlang:"

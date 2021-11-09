@@ -1,0 +1,9 @@
+
+- name: add nodes to wombat
+  command: sh -c "./wombat-headless.py add_node --node "{{node.value}}" --cookie "{{cookie}}" --username "{{default_username}}" --password "{{default_password}}""
+  register: output
+  until: 
+  with_dict: "{{nodes_names}}"
+  loop_control:
+    loop_var: node
+

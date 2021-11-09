@@ -1,0 +1,6 @@
+- name: get node name
+  command: sh -c "epmd -names | grep name | awk '{print $2}'"
+  register: node_name
+    
+- name: give permission to scripts
+  command: sh -c "chmod +x /wombat/ansible/scripts/*"

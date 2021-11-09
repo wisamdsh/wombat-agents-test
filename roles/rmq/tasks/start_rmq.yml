@@ -1,0 +1,30 @@
+
+
+- name: run RMQ node
+  docker_container:
+    network_mode: "{{network}}"
+    name: "{{rmq_container_name}}{{release}}"
+    hostname: rmq
+    image: "{{docker_image}}{{release}}-management"
+    ports:
+      - 5672:5672
+      - 5673:5673
+      - 15672:15672
+    container_default_behavior: no_defaults
+    # command: sh -c "rabbitmq-server"
+    mounts:
+      - source: /Users/wisamdsh/wombat-agents-test/scripts
+        target: /wombat/ansible/scripts
+        type: bind
+      - source: /Users/wisamdsh/wombat-agents-test/rmq/enabled_plugins
+        target: /etc/rabbitmq/enabled_plugins
+        type: bind
+      - source: /Users/wisamdsh/wombat-agents-test/rmq/erlang.cookie
+        target: /root/.erlang.cookie
+        type: bind
+      - source: /Users/wisamdsh/wombat-agents-test/rmq/erlang.cookie
+        target: /var/lib/rabbitmq/.erlang.cookie
+        type: bind
+
+
+

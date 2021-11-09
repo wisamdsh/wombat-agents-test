@@ -1,0 +1,19 @@
+---
+- name: Add users
+  command: "rabbitmqctl add_user {{user.username}} {{user.password}}" 
+  with_items: "{{rabbitmq_users}}"
+  loop_control:
+    loop_var: user
+
+- name: Set tags
+  command: "rabbitmqctl set_user_tags {{user.username}} {{user.tags}}" 
+  with_items: "{{rabbitmq_users}}"
+  loop_control:
+    loop_var: user
+
+
+- name: Set permissions
+  command: "rabbitmqctl set_permissions {{user.username}} {{user.permissions}}" 
+  with_items: "{{rabbitmq_users}}"
+  loop_control:
+    loop_var: user
