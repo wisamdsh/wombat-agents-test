@@ -8,3 +8,4 @@
 - preparing wombat immediately after starting the container doesn't change the password ..it seems it needs more time till wombat starts
 
 
+starting rmq in new versions # command: sh -c "rabbitmq-server"

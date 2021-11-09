@@ -1,3 +1,6 @@
+- debug:
+    var: playbook_dir
+
 - name: Pull Wombat image
   docker_image:
     name: "{{ wombat_docker_image }}"
@@ -16,6 +19,6 @@
       WOMBAT_NODENAME: "{{wombat_node_name}}"
       WOMBAT_LICENSE: "{{wombat_license}}"
     mounts:
-      - source: ../../../scripts
+      - source: "{{playbook_dir}}/scripts"
         target: /wombat/ansible/scripts
         type: bind
