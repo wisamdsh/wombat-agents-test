@@ -6,7 +6,6 @@
 - name: test rmq versions
   include_tasks: "do_test_rmq.yml"
   vars:
-     
     version: "ans-rmq{{release}}"
     docker_image: "{{ custom_rmq_docker_image if ( release in rmq_customized_versions ) else rmq_docker_image }}"
   loop: "{{rmq_customized_versions}} + {{rmq_versions}}"

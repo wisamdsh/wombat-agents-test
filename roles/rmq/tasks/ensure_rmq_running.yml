@@ -1,5 +1,4 @@
 
-
 - name: install curl
   command: sh -c "apt-get update || true && apt-get -y install curl"
 

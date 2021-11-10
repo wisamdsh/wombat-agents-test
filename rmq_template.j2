@@ -7,17 +7,16 @@
                 border: 1px solid black;
                 border-collapse: collapse;}
         </style>
-        <h1>Testing Erlang Nodes:</h1>
-
+        <h1>Testing RabbitMQ Nodes:</h1>
     </head>
     <body>
         <h3> Agents </h3>
         <table>
             <tbody>  
-                {% for item in groups[inventories] %}
+                {% for key, value in scripts_results.items() %}
                     <tr>
-                        <th> {{item}} </th>
-                        <th> {{hostvars[item]['agents_script_result']['stdout']}} </th>
+                        <th> {{key}} </th>
+                        <th> {{value.agents}} </th>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -25,14 +24,13 @@
         <h3> Metrics </h3>
         <table>
             <tbody>  
-                {% for item in groups[inventories] %}
+                {% for key, value in scripts_results.items() %}
                     <tr>
-                        <th> {{item}} </th>
-                        <th> {{hostvars[item]['metrics_script_result']['stdout']}} </th>
+                        <th> {{key}} </th>
+                        <th> {{value.metrics}} </th>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </body>
 </html>
-
