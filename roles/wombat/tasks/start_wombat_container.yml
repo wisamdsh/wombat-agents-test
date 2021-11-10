@@ -1,5 +1,3 @@
-- debug:
-    var: playbook_dir
 
 - name: Pull Wombat image
   docker_image:

@@ -22,9 +22,7 @@ elixir_customized_versions: [1.2, 1.3]
 # ===========
 # RMQ
 # ===========
-rmq_versions: []
-# 3.7, 3.8, 3.9
-rmq_customized_versions: [3.4, 3.5]
-# , 3.5, 3.6]
+rmq_versions: [3.7, 3.8, 3.9]
+rmq_customized_versions: [3.4, 3.5, 3.6]
 
 ...

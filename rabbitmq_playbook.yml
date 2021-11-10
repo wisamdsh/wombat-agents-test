@@ -1,0 +1,15 @@
+---     
+- hosts: local
+  vars_files:
+    - external-vars.yaml
+  roles:
+    - {role: docker, action: "ensure_docker"}
+    - {role: rmq, action: "build_custom_images"}
+    - {role: rmq, action: "test_rmq"}
+  
+- hosts: local
+  tasks:
+    - name: Generate rabbitmq report
+      template:
+        src: rmq_template.j2
+        dest: reports_html/rabbitmq.html

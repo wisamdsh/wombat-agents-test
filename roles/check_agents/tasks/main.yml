@@ -11,8 +11,3 @@
   command: sh -c "/wombat/ansible/scripts/check_agents.escript '{{node_name}}'"
   register: agents_script_result
     
-
-- name: check agent script result
-  fail:
-    msg: ["the following nodes failed the agents test:", "{{agents_script_result.stdout}}"]
-  when: agents_script_result.stdout != "[]"

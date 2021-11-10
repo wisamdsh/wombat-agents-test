@@ -6,14 +6,7 @@
 - name: run metrics script
   command: sh -c "/wombat/ansible/scripts/check_metrics.escript '{{node_name}}'"
   register: metrics_script_result
-  
-
-- name: check metrics script result
-  debug:
-    msg: "the follwing nodes failed the metrics test: \\n {{metrics_script_result.stdout}}"
-  when: metrics_script_result.stdout != "[]"
-
 
 - name: Pause for 2 minutes to build app cache
   pause:
-    minutes: 4
+    minutes: 2

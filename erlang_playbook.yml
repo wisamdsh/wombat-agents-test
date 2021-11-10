@@ -19,17 +19,8 @@
     - {role: check_agents}
     - {role: check_metrics}
 
-
-    
-
 - hosts: local
   tasks:
-
-    - name: debug hostvars
-      debug: 
-        var: hostvars["ans-erlang17"]
-
-
     - name: Generate Erlang report
       template:
         src: report_template.j2

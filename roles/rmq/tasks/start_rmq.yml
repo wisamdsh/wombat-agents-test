@@ -16,7 +16,7 @@
       - source: "{{playbook_dir}}/scripts"
         target: /wombat/ansible/scripts
         type: bind
-      - source: "{{playbook_dir}}/enabled_plugins"
+      - source: "{{playbook_dir}}/rmq/enabled_plugins"
         target: /etc/rabbitmq/enabled_plugins
         type: bind
       - source: "{{playbook_dir}}/rmq/erlang.cookie"

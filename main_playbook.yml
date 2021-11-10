@@ -1,0 +1,4 @@
+
+- import_playbook: erlang_playbook.yml
+- import_playbook: elixir_playbook.yml
+- import_playbook: rabbitmq_playbook.yml
