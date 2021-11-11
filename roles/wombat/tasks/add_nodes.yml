@@ -7,3 +7,8 @@
   loop_control:
     loop_var: node
 
+- name: check if nodes are added
+  fail:
+    msg: The following node "{{item.node.value}}" couldn't be added to wombat
+  when: '"was added succesfully" not in item.stdout'
+  with_items: "{{output.results}}"

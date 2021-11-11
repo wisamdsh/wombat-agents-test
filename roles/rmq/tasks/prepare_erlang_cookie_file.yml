@@ -1,0 +1,6 @@
+
+- name: give correct permissions to erlang.cookie file
+  file:
+    path: "{{playbook_dir}}/rmq/erlang.cookie"
+    state: file
+    mode: "u+rw,u-x,og-rwx,"
