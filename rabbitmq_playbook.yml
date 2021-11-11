@@ -1,8 +1,10 @@
 ---     
+
 - hosts: local
   vars_files:
     - external-vars.yaml
   roles:
+    - {role: rmq, action: "prepare_erlang_cookie_file"}
     - {role: docker, action: "ensure_docker"}
     - {role: rmq, action: "build_custom_images"}
     - {role: rmq, action: "test_rmq"}
