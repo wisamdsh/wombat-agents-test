@@ -2,6 +2,10 @@
   package:
     name: docker
     state: present
+<<<<<<< HEAD
+=======
+  become: false
+>>>>>>> 04ccd7a35d3fca7654fb8a477103ad274a39b235
 
 - name: Create a network
   docker_network:
