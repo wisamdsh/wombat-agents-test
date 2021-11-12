@@ -2,7 +2,7 @@
   package:
     name: docker
     state: present
-  become: true
+  become: false
 
 - name: Create a network
   docker_network:
