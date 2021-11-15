@@ -6,7 +6,3 @@
 - name: run metrics script
   command: sh -c "/wombat/ansible/scripts/check_metrics.escript '{{node_name}}'"
   register: metrics_script_result
-
-- name: Pause for 2 minutes to build app cache
-  pause:
-    minutes: 2
