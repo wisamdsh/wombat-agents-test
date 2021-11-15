@@ -2,6 +2,6 @@ wombat_docker_image: erlangsolutions/wombatoam:latest
 wombat_hostname: wombat
 wombat_container_name: ans-wombat
 wombat_node_name: 'wombat@wombat'
-wombat_license: lookup('env','WOMBAT_LICENSE')
+wombat_license: "{{lookup('env','WOMBAT_LICENSE')}}"
 default_username: admin
 default_password: adminadmin
