@@ -1,8 +1,23 @@
-
 - name: check if {{custom_docker_image}} exist
   docker_image_info:
     name: '{{custom_docker_image}}'
   register: result
+
+# - name: debug phoenix
+#   debug:
+#     var: result
+
+# - name: debug phoenix
+#   debug:
+#     var: custom_docker_image
+
+# - name: debug phoenix
+#   debug:
+#     var: dockerfile
+
+# - name: debug phoenix
+#   debug:
+#     var: base_docker_version
 
 - name: build {{custom_docker_image}} docker image
   docker_image:
@@ -10,7 +25,9 @@
     build:
       path: ./dockerfiles/
       dockerfile: '{{dockerfile}}'
-      args: 
-        version: '{{base_docker_version}}'
+      args: '{{docker_image_args}}'
+        # with_dict: "{{ base_docker_version | combine() }}"
+        # version: '{{base_docker_version}}'
+        # phoenix: 
     source: build
   when: result.images | length == 0

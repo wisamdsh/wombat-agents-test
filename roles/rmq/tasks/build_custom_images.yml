@@ -4,5 +4,6 @@
     custom_docker_image: '{{custom_rmq_docker_image}}{{item}}-management'
     # custom_version: "{{item}}"
     dockerfile: 'Dockerfile.rabbitmq-{{item}}'
-    base_docker_version: '{{rmq_docker_image}}{{item}}-management'
-  with_items: "{{rmq_customized_versions}}"      
+    docker_image_args: 
+      version: '{{rmq_docker_image}}{{item}}-management'
+  with_items: "{{rmq_customized_versions}}"

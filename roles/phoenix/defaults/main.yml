@@ -1,0 +1,5 @@
+# elixir_docker_image: "elixir:"
+# custom_elixir_docker_image: "ans_elixir:"
+# phoenix_docker_image: "bitwalker/alpine-elixir-phoenix:"
+phoenix_container_name: ans-phoenix 
+custom_phoenix_docker_image: "ans_phoenix:"

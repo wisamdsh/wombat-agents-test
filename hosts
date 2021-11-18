@@ -13,11 +13,15 @@ ans-elixir1.[2:12]
 [rmq_inv]
 ans-rmq3.[4:9]
 
+[phx_inv]
+ans-phoenix1.[6]
+
 [containers:children]
 wombat_inv 
 erlang_inv
 elixir_inv
 rmq_inv
+phx_inv
 
 [containers:vars]
 ansible_connection=docker
