@@ -3,5 +3,7 @@
     vars:
       custom_docker_image: '{{custom_elixir_docker_image}}{{item}}'
       dockerfile: 'Dockerfile.elixir'
-      base_docker_version: '{{elixir_docker_image}}{{item}}'
-    with_items: "{{elixir_customized_versions}}"     
+      docker_image_args: 
+        version: '{{elixir_docker_image}}{{item}}'
+    with_items: "{{elixir_customized_versions}}"
+

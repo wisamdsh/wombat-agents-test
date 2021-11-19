@@ -1,0 +1,42 @@
+
+ARG version
+ARG phoenix_version
+
+FROM bitwalker/alpine-elixir-phoenix:$version
+
+ARG version
+ARG phoenix_version
+RUN echo $version
+RUN echo $phoenix_version
+
+# ARG version
+# Install postgres
+# RUN echo $version['key']
+
+RUN apk update && apk add postgresql --no-cache && \
+    mkdir /run/postgresql && chown postgres:postgres /run/postgresql/
+USER postgres
+RUN cd && whoami && mkdir /var/lib/postgresql/data && \
+    chmod 0700 /var/lib/postgresql/data
+RUN whoami && initdb -D /var/lib/postgresql/data
+
+# Set exposed ports
+EXPOSE 4000
+ENV PORT=4000 MIX_ENV=dev PHOENIX_VERSION=$phoenix_version ELIXIR_VERSION=$version
+
+# Cache elixir deps
+USER root
+ADD ./phoenix-chat-example/ ./
+RUN ls
+
+RUN mix do deps.get, deps.compile
+# RUN su - postgres -c "pg_ctl start -D /var/lib/postgresql/data" &&  mix ecto.setup
+
+# RUN mkdir /testing
+
+# USER postgres
+# RUN mix phx.server
+
+# HIDE THIS LINE 
+CMD ["sh", "-c", "su - postgres -c \"pg_ctl start -D /var/lib/postgresql/data\" && mix ecto.setup && mix phx.server"]
+# CMD ["mix", "phx.server"]

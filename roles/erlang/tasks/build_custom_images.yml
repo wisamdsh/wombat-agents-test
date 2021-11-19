@@ -3,5 +3,6 @@
     vars:
       custom_docker_image: '{{custom_erlang_docker_image}}{{item}}'
       dockerfile: 'Dockerfile.erlang-{{item}}'
-      base_docker_version: '{{erlang_docker_image}}{{item}}'
-    with_items: "{{erlang_customized_versions}}"     
+      docker_image_args: 
+        version: '{{erlang_docker_image}}{{item}}'
+    with_items: "{{erlang_customized_versions}}"

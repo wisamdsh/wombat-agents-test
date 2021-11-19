@@ -1,0 +1,17 @@
+
+
+- name: run Phoenix node
+  docker_container:
+    network_mode: "{{network}}"
+    name: "{{phoenix_container_name}}{{item.value}}"
+    hostname: phoenix{{item.value}}
+    image: "{{ custom_phoenix_docker_image}}{{item.value}}"
+    command:  sh -c "iex -sname phx"{{item.value}}" --cookie "{{cookie}}" -S mix phx.server"
+    ports:
+      - 4000:4000
+    # mounts:
+      # - source: "{{playbook_dir}}/scripts"
+      #   target: /wombat/ansible/scripts
+      #   type: bind
+  with_dict: "{{phoenix_versions}}"
+

@@ -1,0 +1,10 @@
+  - name: build custom images if exist
+    include: roles/docker/tasks/build_custom_image.yml
+    vars:
+      custom_docker_image: '{{custom_phoenix_docker_image}}{{item.value}}'
+      dockerfile: 'Dockerfile.phoenix'
+      # base_docker_version: '{{item.key}}'
+      docker_image_args: 
+        version: '{{item.key}}'
+        phoenix_version: '{{item.value}}'
+    with_dict: "{{phoenix_versions}}"
