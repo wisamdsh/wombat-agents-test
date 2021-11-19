@@ -14,10 +14,10 @@ ans-elixir1.[2:12]
 ans-rmq3.[4:9]
 
 [phx_inv]
-ans-phoenix1.[6]
+ans-phoenix1.6
 
 [containers:children]
-wombat_inv 
+wombat_inv
 erlang_inv
 elixir_inv
 rmq_inv
