@@ -17,10 +17,6 @@
   loop_control:
     loop_var: container
 
-- name: debug
-  debug:
-    var: output
-
 - name: set fact
   set_fact:
     nodes_names: "{{ output.results | reject('skipped') | selectattrs('stdout') }}"
